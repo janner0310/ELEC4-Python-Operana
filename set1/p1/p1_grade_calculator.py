@@ -5,11 +5,24 @@
 # Date: November 26, 2026
 
 
+
 def get_grades():
     grades = []
 
-    number = int(input("How many grades do you want to enter? "))
+    # Validate the number of grades
+    while True:
+        try:
+            number = int(input("How many grades do you want to enter? "))
 
+            if number > 0:
+                break
+            else:
+                print("Please enter at least 1 grade.")
+
+        except ValueError:
+            print("Invalid input! Please enter a whole number.")
+
+    # Accept and validate individual grades
     for i in range(number):
         while True:
             try:
