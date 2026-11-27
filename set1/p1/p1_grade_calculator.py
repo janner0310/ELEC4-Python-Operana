@@ -1,4 +1,3 @@
-
 # Name: JOFIL OPERANA
 # Section: IV-BSIT-B
 # Activity: P1 - Functions
@@ -9,7 +8,6 @@
 def get_grades():
     grades = []
 
-    # Validate the number of grades
     while True:
         try:
             number = int(input("How many grades do you want to enter? "))
@@ -22,7 +20,6 @@ def get_grades():
         except ValueError:
             print("Invalid input! Please enter a whole number.")
 
-    # Accept and validate individual grades
     for i in range(number):
         while True:
             try:
@@ -53,11 +50,12 @@ def get_lowest(grades):
 
 
 def check_pass_fail(grades):
-    for grade in grades:
-        if grade >= 75:
-            print(f"{grade} - Passed")
-        else:
-            print(f"{grade} - Failed")
+    average = calculate_average(grades)
+
+    if average >= 75:
+        return "Passed"
+    else:
+        return "Failed"
 
 
 def display_menu():
@@ -78,8 +76,8 @@ def view_results(grades):
         print("Highest:", get_highest(grades))
         print("Lowest:", get_lowest(grades))
 
-        print("\n--- Pass or Fail ---")
-        check_pass_fail(grades)
+        print("\n--- Grade Status ---")
+        print("Status:", check_pass_fail(grades))
 
         print("\n1. Back to Main Menu")
         print("2. Exit Program")
@@ -95,7 +93,6 @@ def view_results(grades):
 
         else:
             print("Invalid choice! Please select 1 or 2.")
-
 
 
 def main():
@@ -125,6 +122,10 @@ def main():
 
         else:
             print("Invalid choice! Please select 1, 2, or 3.")
-
-
 main()
+
+# Local and Global Variables:
+# A local variable is created inside a function and can only be used within that function.
+# A global variable is created outside a function and can be accessed by different functions.
+# In this program, student_grades is a local variable inside the main() function.
+# It is used to store the grades entered by the user while the program is running.
