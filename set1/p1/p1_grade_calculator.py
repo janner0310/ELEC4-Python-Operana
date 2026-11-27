@@ -23,7 +23,7 @@ def get_grades():
     for i in range(number):
         while True:
             try:
-                grade = float(input(f"Enter grade {i + 1}: "))
+                grade = float(input(f"Enter grade No.{i + 1}: "))
 
                 if 0 <= grade <= 100:
                     grades.append(grade)
