@@ -1,53 +1,53 @@
-# Name: JOFIL OPERAÑA
+# Name: JOFIL OPERANA
 # Section: IV-BSIT-B
-# Activity: P2 - Python Modules
+# Activity: P2 - Custom Module
 # Date: November 27, 2026
 
-import calculator
-
-def display_menu():
-    print("\n===== SIMPLE CALCULATOR =====")
-    print("1. Addition")
-    print("2. Subtraction")
-    print("3. Multiplication")
-    print("4. Division")
-    print("5. Exit")
+import student_utils
+from datetime import datetime
 
 
 def main():
+    grades = []
+
+    print("===== STUDENT GRADE REPORT =====")
+
     while True:
-        display_menu()
-
-        choice = input("\nEnter your choice: ")
-
-        if choice == "5":
-            print("\nThank you for using the calculator!")
-            break
-
-        if choice not in ["1", "2", "3", "4"]:
-            print("\nInvalid input! Please select 1 to 5.")
-            continue
-
         try:
-            num1 = float(input("\nEnter first number: "))
-            num2 = float(input("Enter second number: "))
+            number = int(input("How many grades do you want to enter? "))
 
-            if choice == "1":
-                result = calculator.add(num1, num2)
-
-            elif choice == "2":
-                result = calculator.subtract(num1, num2)
-
-            elif choice == "3":
-                result = calculator.multiply(num1, num2)
-
-            elif choice == "4":
-                result = calculator.divide(num1, num2)
-
-            print("\nResult:", result)
+            if number > 0:
+                break
+            else:
+                print("Please enter at least 1 grade.")
 
         except ValueError:
-            print("\nInvalid input! Please enter numeric values.")
+            print("Invalid input! Please enter a whole number.")
+
+    for i in range(number):
+        while True:
+            try:
+                grade = float(input(f"Enter grade No.{i + 1}: "))
+
+                if 0 <= grade <= 100:
+                    grades.append(grade)
+                    break
+                else:
+                    print("Grade must be between 0 and 100.")
+
+            except ValueError:
+                print("Invalid input! Please enter a number.")
+
+    print("\n===== GRADE RESULTS =====")
+    print("Grades:", grades)
+    print("Average:", student_utils.calculate_average(grades))
+    print("Highest:", student_utils.get_highest(grades))
+    print("Lowest:", student_utils.get_lowest(grades))
+
+    print("Status:", student_utils.check_pass_fail(grades))
+
+    print("\nReport generated:", datetime.now().strftime("%Y-%m-%d %H:%M:%S\n"))
 
 
-main()
+if __name__ == "__main__":
+    main()
